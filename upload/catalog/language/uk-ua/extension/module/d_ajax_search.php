@@ -4,13 +4,13 @@ $_['results_for'] = 'Результати для ';
 $_['search_phase'] ='Введіть пошуковий запит...';
 $_['no_results'] ='нічого не знайдено';
 //what find
-$_['product'] = 'Товар';
-$_['category'] = 'Категорія';
-$_['manufacturer'] = 'Виробник';
-$_['information'] = 'Інформація';
+$_['product'] = 'товар';
+$_['category'] = 'категорія';
+$_['manufacturer'] = 'виробник';
+$_['information'] = 'інформація';
 $_['blog'] = 'блог';
 //find by
-$_['name'] = 'ім\'я';
+$_['name'] = 'назва';
 $_['description'] = 'опис';
 $_['model'] = 'модель';
 //$_['manufacturer'] = 'виробник';

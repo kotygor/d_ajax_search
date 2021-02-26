@@ -152,6 +152,7 @@
 							name = result[i].name;
 						}
 						html += '<div class="col name {% if mobile %} pull-left name {% endif %} col-sm-7 col-xs-5 va-center text-left"><span class="forkeydon">' + name + '</span>';
+							{# jd todo Замінити наступний текст на нормальні фрази із мовних файлів - "in ' + result[i].where_find + ' ' + result[i].find_by" #}
 						html += '{% if setting['where_search'] %} <br><span class="where-find">in ' + result[i].where_find + ' ' + result[i].find_by + '</span>{% endif %}';
 						html += '</div>';
 

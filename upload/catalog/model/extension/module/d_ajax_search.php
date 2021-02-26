@@ -2,15 +2,15 @@
 class ModelExtensionModuleDAjaxSearch extends Model {
     private $id = 'd_ajax_search';
     private $route = 'extension/module/d_ajax_search';
-    public function search($text, $searches = array(), $research=0) {
+    public function search($text, $searches = array(), $research = 0) {
         $this->load->language($this->route);
         $this->load->model('catalog/product');
         $this->load->model('catalog/category');
         $this->load->model('catalog/manufacturer');
         $this->load->model('catalog/information');
         $this->load->model('tool/image');
-        $search_filter = array();
-        $setting1      = $this->model_setting_setting->getSetting($this->id);
+        $search_filter = [];
+        $setting1 = $this->model_setting_setting->getSetting($this->id);
 
         $settings = $setting1['d_ajax_search_setting'];
         foreach ($searches as $search) {
@@ -20,50 +20,50 @@ class ModelExtensionModuleDAjaxSearch extends Model {
 
         }
         $sql_array = array();
-        $sql       = '';
-        $suggestion='';
-        $redirect=0;
+        $sql = '';
+        $suggestion = '';
+        $redirect = 0;
         $settings['no_dublicate_images'] = isset($settings['no_dublicate_images']) ? $settings['no_dublicate_images'] : 0;
         $settings['suggestion'] = isset($settings['suggestion']) ? $settings['suggestion'] : 0;
 
-        $sql_redirect="SELECT * FROM " . DB_PREFIX . "as_query WHERE text = '" . $text . "'";
-        $query=$this->db->query($sql_redirect);
+        $sql_redirect = "SELECT * FROM " . DB_PREFIX . "as_query WHERE text = '" . $text . "'";
+        $query = $this->db->query($sql_redirect);
         if(!empty($query->rows[0]['redirect'])){
-            $text=$query->rows[0]['redirect'];
-            $redirect_text=$query->rows[0]['redirect'];
-            $redirect=1;
+            $text = $query->rows[0]['redirect'];
+            $redirect_text = $query->rows[0]['redirect'];
+            $redirect = 1;
         }
 
         if($research && $settings['suggestion']){
-            $sql_smart="SELECT text FROM `" . DB_PREFIX . "as_query` ORDER BY count DESC LIMIT 100";
-            $query=$this->db->query($sql_smart);
-            $gml=0;
-            $lev=20;
-            $new_text='';
+            $sql_smart = "SELECT text FROM `" . DB_PREFIX . "as_query` ORDER BY count DESC LIMIT 100";
+            $query = $this->db->query($sql_smart);
+            $gml = 0;
+            $lev = 20;
+            $new_text = '';
             foreach ($query->rows as $key => $row) {
 
 // LEVENSTEIN
 // if(levenshtein($text, $row['text']) < $lev){
 //     $new_text=$row['text'];
-//     $lev=levenshtein($text, $row['text']);
+//     $lev = levenshtein($text, $row['text']);
 
 // }
 // Oliver's algoritm
 
                 similar_text( $text , $row['text'], $percent);
                 if($percent > $gml && $percent > 65){
-                    $new_text=$row['text'];
-                    $saggestion= $row['text'];
-                    $gml=$percent;
+                    $new_text = $row['text'];
+                    $saggestion = $row['text'];
+                    $gml = $percent;
                 }
             }
 
             if(!empty($new_text)){
-                $text=$new_text;
+                $text = $new_text;
             }
         }
 // }
-        $keywords=explode(' ', trim(preg_replace('/\s+/', ' ', $text)));
+        $keywords = explode(' ', trim(preg_replace('/\s+/', ' ', $text)));
 
         foreach ($search_filter as $search => $filter) {
 
@@ -92,7 +92,7 @@ class ModelExtensionModuleDAjaxSearch extends Model {
             }
 
             $sql .= " WHERE (";
-            $implode = array();
+            $implode = [];
             foreach ($filter['query'] as $key => $query) {
                 if (isset($settings['extension'][$search]['query'][$key]) && $settings['extension'][$search]['query'][$key] == 0) {
                 } else {
@@ -206,7 +206,7 @@ class ModelExtensionModuleDAjaxSearch extends Model {
                         foreach ($info as $gde => $string) {
                             $check = stripos($string, $text);
                             if ($check === false) {
-                                $result[$search][$key]['find_by']=$this->language->get('name');
+                                $result[$search][$key]['find_by'] = $this->language->get('name');
                             } else {
                                 $result[$search][$key]['find_by'] = $this->language->get($gde);
                                 break;
@@ -219,7 +219,7 @@ class ModelExtensionModuleDAjaxSearch extends Model {
 
         if($research==0){
             if(empty($result)){
-                $result=$this->search($text, $searches, $research=1);
+                $result = $this->search($text, $searches, $research = 1);
                 return $result;
             }
         }
@@ -240,18 +240,18 @@ class ModelExtensionModuleDAjaxSearch extends Model {
         $settings['autocomplete'] = isset($settings['autocomplete']) ? $settings['autocomplete'] : 0;
 
         if($settings['autocomplete']){
-            $autocomplite_flag=0;
+            $autocomplite_flag = 0;
 
-            $sql_autocomplite="SELECT text FROM `" . DB_PREFIX . "as_query` ORDER BY count DESC LIMIT 100";
-            $query=$this->db->query($sql_autocomplite);
-            $autocomplite=array();
+            $sql_autocomplite = "SELECT text FROM `" . DB_PREFIX . "as_query` ORDER BY count DESC LIMIT 100";
+            $query = $this->db->query($sql_autocomplite);
+            $autocomplite = [];
             foreach ($query->rows as $key => $row) {
 
                 similar_text( $keyword , $row['text'], $percent);
 
                 if($percent > $autocomplite_flag && $percent > 65){
-                    $autocomplite=$row['text'];
-                    $autocomplite_flag=$percent;
+                    $autocomplite = $row['text'];
+                    $autocomplite_flag = $percent;
                 }
             }
             return $autocomplite;
