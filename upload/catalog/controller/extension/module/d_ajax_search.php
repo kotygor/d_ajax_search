@@ -26,8 +26,8 @@ class ControllerExtensionModuleDAjaxSearch extends Controller {
         $setting1 = $this->model_setting_setting->getSetting($this->id);
         if( !empty($setting1)&&$setting1['d_ajax_search_status']){
             if(empty($this->request->get['route']) || !empty($this->request->get['route']) && ($this->request->get['route'] != 'checkout/checkout')){
-                $this->document->addScript('catalog/view/javascript/d_tinysort/tinysort.min.js');
-                $this->document->addScript('catalog/view/javascript/d_tinysort/jquery.tinysort.min.js');
+//                $this->document->addScript('catalog/view/javascript/d_tinysort/tinysort.min.js');
+                $this->document->addScript('catalog/view/javascript/d_ajax_search/jquery.tinysort.min.js');
             }
             if (preg_match('/(iPhone|iPod|iPad|Android|Windows Phone)/', $this->request->server['HTTP_USER_AGENT'])) {
                 $mobile = $data['mobile'] = 1;
