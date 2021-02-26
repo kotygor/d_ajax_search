@@ -24,7 +24,7 @@ class ModelExtensionDOpencartPatchCache extends Model {
 
     public function clearTwig() {
         
-        $directories = glob(DIR_CACHE . '*', GLOB_ONLYDIR);
+        $directories = glob(DIR_CACHE . 'template/*', GLOB_ONLYDIR);
 
         if ($directories) {
             foreach ($directories as $directory) {

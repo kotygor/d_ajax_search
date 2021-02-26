@@ -15,7 +15,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         parent::__construct($registry);
 
         $this->d_shopunity = (file_exists(DIR_SYSTEM.'library/d_shopunity/extension/d_shopunity.json'));
-        $this->d_opencart_patch = (file_exists(DIR_SYSTEM.'library/d_shopunity/extension/d_opencart_patch.json'));
+        $this->d_opencart_patch = true; // we don`t need json, just for work
         $this->d_twig_manager = (file_exists(DIR_SYSTEM.'library/d_shopunity/extension/d_twig_manager.json'));
         $this->d_ajax_search_pro =(file_exists(DIR_SYSTEM.'library/d_shopunity/extension/'.$this->codename.'_pro.json'));
         $this->d_event_manager = (file_exists(DIR_SYSTEM.'library/d_shopunity/extension/d_event_manager.json'));
@@ -63,7 +63,6 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
 	        $this->load->model('extension/d_opencart_patch/user');
 	        $this->load->model('extension/d_opencart_patch/cache');
 
-	        $this->model_extension_d_opencart_patch_cache->clearTwig();
         }
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
