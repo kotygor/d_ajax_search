@@ -28,12 +28,12 @@
 
 
         <!-- 3.x compatibility START -->
-        <!-- <file path="catalog/view/theme/*/template/common/header.twig">
+        <file path="catalog/view/theme/*/template/common/header.twig">
             <operation error="skip">
                 <search regex="true" limit="1"><![CDATA[($)]]></search>
                 <add><![CDATA[{{ d_ajax_search }}]]></add>
             </operation>
-        </file> -->
+        </file>
         <!-- 3.x compatibility END -->
 
 
