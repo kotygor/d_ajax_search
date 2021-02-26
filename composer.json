@@ -1,0 +1,55 @@
+{
+	"name": "kotygor/d_ajax_search",
+	"description": "Ajax search for Opencart",
+	"type": "opencart-extension",
+	"minimum-stability": "dev",
+	"extra":{
+		"opencart-install-dir": "www",
+		"opencart-storage-dir": "opencart-storage",
+		"src-dir" : "upload",
+		"installers":{
+			"xml": "install.xml"
+		},
+		"mappings": [
+			"admin/controller/extension/d_ajax_search/product_simple.php",
+			"admin/controller/extension/module/d_ajax_search.php",
+			"admin/language/en-gb/extension/module/d_ajax_search.php",
+			"admin/model/extension/module/d_ajax_search.php",
+			"admin/view/image/d_ajax_search/bg.svg",
+			"admin/view/image/d_ajax_search/icons/extremely_fast.svg",
+			"admin/view/image/d_ajax_search/icons/intelligent_search.svg",
+			"admin/view/image/d_ajax_search/icons/search_over_20_parameters.svg",
+			"admin/view/image/d_ajax_search/icons/search_suggestions.svg",
+			"admin/view/image/d_ajax_search/logo.svg",
+			"admin/view/stylesheet/d_ajax_search/d_ajax_search.css",
+			"admin/view/template/extension/d_ajax_search/customer_search_history.twig",
+			"admin/view/template/extension/d_ajax_search/welcome.twig",
+			"admin/view/template/extension/module/d_ajax_search.twig",
+
+			"catalog/controller/extension/module/d_ajax_search.php",
+			"catalog/language/en-gb/extension/module/d_ajax_search.php",
+			"catalog/model/extension/module/d_ajax_search.php",
+			"catalog/view/javascript/d_ajax_search/jquery.tinysort.min.js",
+			"catalog/view/theme/default/stylesheet/d_ajax_search/d_ajax_search.css",
+			"catalog/view/theme/default/stylesheet/d_ajax_search/mobile.css",
+			"catalog/view/theme/default/template/extension/module/d_ajax_search.twig",
+			"image/catalog/d_ajax_search/no_image_search.png",
+			"system/config/d_ajax_search/product_simple.php",
+			"system/config/d_ajax_search.php"
+		]
+	},
+	"suggest": {
+		"kotygor/opencart": "dev-fcb",
+		"kotygor/opencart-extension-installer": "dev-master"
+	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/kotygor/opencart"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/kotygor/opencart-extension-installer"
+		}
+	]
+}
