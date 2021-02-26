@@ -80,7 +80,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
 
             $this->model_setting_setting->editSetting($this->codename, $this->request->post);
             $this->session->data['success'] = $this->language->get('text_success');
-            $this->response->redirect($this->model_extension_d_opencart_patch_url->getExtensionLink('module'));
+            $this->response->redirect($this->url->link('marketplace/extension', ['user_token' => $this->session->data['user_token'], 'type' => 'module']));
         }
 
         if(file_exists(DIR_APPLICATION . 'view/javascript/d_tinysort/tinysort.min.js')) {
@@ -125,13 +125,13 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         $data['codename'] = $this->codename;
         $data['route'] = $this->route;
         $data['version'] = $this->extension['version'];
-        $data['token'] =  $this->model_extension_d_opencart_patch_user->getToken();
+
         $data['pro'] = $this->d_ajax_search_pro;
         $data['d_shopunity'] = $this->d_shopunity;
         $data['store_id'] = $this->store_id;
 
-        $data['token'] = $this->model_extension_d_opencart_patch_user->getToken();
-        $data['url_token'] = $this->model_extension_d_opencart_patch_user->getUrlToken();
+        $data['token'] = $user_token = $this->session->data['user_token'];
+        $data['url_token'] = 'user_token=' . $this->session->data['user_token'];
         
         // Tab
         $data['text_settings'] = $this->language->get('text_settings');
@@ -205,8 +205,8 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         $data['help_extended'] = $this->language->get('help_extended');
 
 
-        $data['action'] = $this->model_extension_d_opencart_patch_url->link($this->route);
-        $data['cancel'] = $this->model_extension_d_opencart_patch_url->getExtensionLink('module');
+        $data['action'] = $this->url->link($this->route, ['user_token' => $user_token]);
+        $data['cancel'] = $this->url->link('marketplace/extension', ['user_token' => $user_token, 'type' => 'module']);
 
         $data['setup'] = $this->isSetup();
         $data['text_setup'] = $this->language->get('text_setup');
@@ -216,7 +216,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         $data['breadcrumbs'] = array();
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_home'),
-            'href' => $this->model_extension_d_opencart_patch_url->link('common/dashboard')
+            'href' => $this->url->link('common/dashboard', ['user_token' => $user_token])
         );
 
         $data['breadcrumbs'][] = array(
@@ -226,7 +226,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title_main'),
-            'href' => $this->model_extension_d_opencart_patch_url->link($this->route)
+            'href' => $this->url->link($this->route, ['user_token' => $user_token])
         );
 
         if (isset($this->request->post[$this->codename.'_status'])) {
@@ -244,10 +244,10 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
 //        $data['statistic'] = $this->model_extension_module_d_ajax_search->getStatistic();
 //        $data['top_searches'] = $this->model_extension_module_d_ajax_search->getTopsearches();
 
-        $data['hour'] = $this->model_extension_d_opencart_patch_url->link($this->route.'/updateCharts','time=1');
-        $data['week'] = $this->model_extension_d_opencart_patch_url->link($this->route.'/updateCharts','time=7');
-        $data['mounth'] = $this->model_extension_d_opencart_patch_url->link($this->route.'/updateCharts','time=30');
-        $data['year'] = $this->model_extension_d_opencart_patch_url->link($this->route.'/updateCharts', 'time=365');
+        $data['hour']   = $this->url->link($this->route . '/updateCharts', ['user_token' => $user_token, 'time' => 1]);
+        $data['week']   = $this->url->link($this->route . '/updateCharts', ['user_token' => $user_token, 'time' => 7]);
+        $data['mounth'] = $this->url->link($this->route . '/updateCharts', ['user_token' => $user_token, 'time' => 30]);
+        $data['year']   = $this->url->link($this->route . '/updateCharts', ['user_token' => $user_token, 'time' => 365]);
 
         if (isset($this->request->get['filter_name'])) {
             $filter_name = $this->request->get['filter_name'];
@@ -266,13 +266,13 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         $pagination->total = count($allHistory);
         $pagination->page = $page;
         $pagination->limit = 10;
-        $pagination->url = $this->model_extension_d_opencart_patch_url->link($this->route, 'page={page}');
+        $pagination->url = $this->url->link($this->route, ['user_token' => $user_token, 'page' => '{page}']);
 
         $data['pagination'] = $pagination->render();
 
         $data['results'] = sprintf($this->language->get('text_pagination'), (count($allHistory)) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > (count($allHistory) - 10)) ? count($allHistory) : ((($page - 1) * 10) + 10), count($allHistory), ceil(count($allHistory) / 10));
 
-        $data['redirect'] = HTTP_SERVER . 'index.php?route=' . $this->route . '/editRedirect&'.$this->model_extension_d_opencart_patch_user->getUrlToken();
+        $data['redirect'] = HTTP_SERVER . 'index.php?route=' . $this->route . '/editRedirect&' . 'user_token=' . $this->session->data['user_token'];
 
         $setting = $this->model_setting_setting->getSetting($this->codename);
         $setting = (isset($setting[$this->codename.'_setting'])) ? $setting[$this->codename.'_setting'] : array();
@@ -395,7 +395,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         $this->model_setting_setting->editSetting('module_'.$this->codename, $new_post);
 
         $this->session->data['success'] = $this->language->get('success_setup');
-        $this->response->redirect($this->model_extension_d_opencart_patch_url->link($this->route));
+        $this->response->redirect($this->url->link($this->route, ['user_token' => $this->session->data['user_token']]));
     }
 
     public function install()
@@ -531,7 +531,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         $pagination->total = count($allHistory);
         $pagination->page = $page;
         $pagination->limit = 10;
-        $pagination->url = $this->model_extension_d_opencart_patch_url->link($this->route, 'page={page}');
+        $pagination->url = $this->url->link($this->route, ['user_token' => $this->session->data['user_token'], 'page' => '{page}']);
 
         $data['pagination'] = $pagination->render();
 
