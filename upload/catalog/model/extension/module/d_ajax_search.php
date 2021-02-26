@@ -209,12 +209,19 @@ class ModelExtensionModuleDAjaxSearch extends Model {
                                 $result[$search][$key]['find_by'] = $this->language->get('name');
                             } else {
                                 $result[$search][$key]['find_by'] = $this->language->get($gde);
+	                            // jd todo where_find_in
+	                            $where_find_in = $this->language->get('find_in_' . $search . '_' . $gde);
+	                            if($where_find_in != 'find_in_' . $search . '_' . $gde) { // translate found
+	                                $result[$search][$key]['where_find_in'] = $where_find_in;
+	                            }
+	                            else { // translate not found => logging
+	                            	$this->log->write("Translate phrase not found. Please add. Key = " . $where_find_in . ", language - " . $this->config->get('config_language'));
+	                            }
+
                                 break;
                             }
                         }
                     }
-
-                    // jd todo where_find_in
                 }
             }
         }

@@ -13,6 +13,14 @@ $_['blog'] = 'блог';
 $_['name'] = 'назва';
 $_['description'] = 'опис';
 $_['model'] = 'модель';
+
+// where find in
+$_['find_in_product_name'] = 'в назві товару';
+$_['find_in_product_model'] = 'в моделі товару';
+$_['find_in_product_description'] = 'в описі товару';
+$_['find_in_category_name'] = 'в назві категорії';
+
+
 //$_['manufacturer'] = 'виробник';
 //$_['category'] = 'категорія';
 $_['attribute'] = 'атрибут';
