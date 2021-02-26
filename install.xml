@@ -12,9 +12,9 @@
             <operation error="skip">
                 <search><![CDATA[public function index() {]]></search>
                 <add position="after"><![CDATA[
-                    if($this->config->get('d_ajax_search_status')) {
-                        $data['d_ajax_search'] = $this->load->controller('extension/module/d_ajax_search');
-                    }
+        if($this->config->get('d_ajax_search_status')) {
+            $data['d_ajax_search'] = $this->load->controller('extension/module/d_ajax_search');
+        }
                 ]]></add>
             </operation>
         </file>

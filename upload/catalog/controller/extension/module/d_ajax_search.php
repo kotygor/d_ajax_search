@@ -12,7 +12,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller {
         $this->load->language($this->route);
         $this->load->model($this->route);
         $this->load->model('setting/setting');
-        $this->load->model('extension/d_opencart_patch/load');
+//        $this->load->model('extension/d_opencart_patch/load');
     }
 
     public function index(){
@@ -43,7 +43,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller {
                 $data['setting']['class'] = str_replace('&gt;', " ", $data['setting']['class']);
 
                 if($setting1['d_ajax_search_status'] == 1){
-                    return $this->model_extension_d_opencart_patch_load->view('' . $this->route, $data);
+                    return $this->load->view($this->route, $data);
                 }
             }
         }
