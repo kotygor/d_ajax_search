@@ -37,8 +37,19 @@
 			"system/config/d_ajax_search/product_simple.php",
 			"system/config/d_ajax_search.php",
 
-			"system/library/d_shopunity/extension/d_ajax_search.json"
+			"system/library/d_shopunity/extension/d_ajax_search.json",
 
+			"admin/model/extension/d_opencart_patch/cache.php",
+			"admin/model/extension/d_opencart_patch/event.php",
+			"admin/model/extension/d_opencart_patch/extension.php",
+			"admin/model/extension/d_opencart_patch/load.php",
+			"admin/model/extension/d_opencart_patch/modification.php",
+			"admin/model/extension/d_opencart_patch/module.php",
+			"admin/model/extension/d_opencart_patch/setting.php",
+			"admin/model/extension/d_opencart_patch/store.php",
+			"admin/model/extension/d_opencart_patch/url.php",
+			"admin/model/extension/d_opencart_patch/user.php",
+			"admin/model/extension/d_opencart_patch/vqmod.php"
 		]
 	},
 	"suggest": {
