@@ -131,6 +131,7 @@
 						}
 
 						if ({{ setting['block_result'] }}) {
+								{# jd todo Яка логіка цієї штуки? Перебиває переклади першого елементу в групі #}
 							if (i == 0) {
 								html += '<div id="result_block" class="result_block ' + addclass + '"><p class="pull-right block-text text-left">' + result[i].where_find + '</p>';
 							} else if (i !== 0 && result[i].where_find !== result[i - 1].where_find) {

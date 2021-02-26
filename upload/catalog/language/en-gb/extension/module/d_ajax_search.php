@@ -13,8 +13,15 @@ $_['blog'] = 'blog';
 $_['name'] = 'name';
 $_['description'] = 'description';
 $_['model'] = 'model';
-$_['manufacturer'] = 'manufacturer';
-$_['category'] = 'category';
+
+// where find in
+$_['find_in_product_name'] = 'in product name';
+$_['find_in_product_model'] = 'in product model';
+$_['find_in_product_description'] = 'in product_description';
+$_['find_in_category_name'] = 'in category description';
+
+//$_['manufacturer'] = 'manufacturer';
+//$_['category'] = 'category';
 $_['attribute'] = 'attribute';
 $_['title'] = 'title';
 $_['meta_title'] = 'meta title';
