@@ -55,13 +55,16 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         $this->load->language($this->route);
         $this->load->model($this->route);
         $this->load->model('setting/setting');
-        $this->load->model('extension/d_opencart_patch/module');
-        $this->load->model('extension/d_opencart_patch/url');
-        $this->load->model('extension/d_opencart_patch/load');
-        $this->load->model('extension/d_opencart_patch/user');
-        $this->load->model('extension/d_opencart_patch/cache');
 
-        $this->model_extension_d_opencart_patch_cache->clearTwig();
+        if($this->d_opencart_patch) {
+	        $this->load->model('extension/d_opencart_patch/module');
+	        $this->load->model('extension/d_opencart_patch/url');
+	        $this->load->model('extension/d_opencart_patch/load');
+	        $this->load->model('extension/d_opencart_patch/user');
+	        $this->load->model('extension/d_opencart_patch/cache');
+
+	        $this->model_extension_d_opencart_patch_cache->clearTwig();
+        }
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 
@@ -80,11 +83,18 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
             $this->response->redirect($this->model_extension_d_opencart_patch_url->getExtensionLink('module'));
         }
 
-        
-        $this->document->addScript('view/javascript/d_tinysort/tinysort.min.js');
-        $this->document->addScript('view/javascript/d_tinysort/jquery.tinysort.min.js');
-        $this->document->addStyle('view/javascript/d_rubaxa_sortable/sortable.css');
-        $this->document->addScript('view/javascript/d_rubaxa_sortable/sortable.js');
+        if(file_exists(DIR_APPLICATION . 'view/javascript/d_tinysort/tinysort.min.js')) {
+	        $this->document->addScript('view/javascript/d_tinysort/tinysort.min.js');
+        }
+        if(file_exists(DIR_APPLICATION . 'view/javascript/d_tinysort/jquery.tinysort.min.js')) {
+	        $this->document->addScript('view/javascript/d_tinysort/jquery.tinysort.min.js');
+        }
+        if(file_exists(DIR_APPLICATION . 'view/javascript/d_rubaxa_sortable/sortable.css')) {
+	        $this->document->addStyle('view/javascript/d_rubaxa_sortable/sortable.css');
+        }
+        if(file_exists(DIR_APPLICATION . 'view/javascript/d_rubaxa_sortable/sortable.js')) {
+	        $this->document->addScript('view/javascript/d_rubaxa_sortable/sortable.js');
+        }
 
         $this->document->addStyle('view/stylesheet/d_ajax_search/d_ajax_search.css');
 
