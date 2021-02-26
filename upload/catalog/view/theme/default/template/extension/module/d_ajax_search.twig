@@ -318,7 +318,7 @@
 		$(document).on('keyup', '{{ setting['class'] }}', function (ev) {
 			var a = ev;
 			var b = this.value;
-			text_complite(a, b);
+			{#  text_complite(a, b); jd todo це нам потрібно? Наразі не працює #}
 			delay(function () {
 				doquick_search(a, b);
 			}, 500);
@@ -326,7 +326,7 @@
 		$(document).on('focus', '{{ setting['class'] }}', function (ev) {
 			var a = ev;
 			var b = this.value;
-			text_complite(a, b);
+				{#  text_complite(a, b); jd todo це нам потрібно? Наразі не працює #}
 			delay(function () {
 				doquick_search(a, b);
 			}, 500);

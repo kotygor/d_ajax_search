@@ -1,5 +1,5 @@
 <?php
-$_['d_ajax_search_category_simple'] = [
+$_['d_ajax_search_category'] = [
 	'table' => [
 		'name' => 'c',
 		'full_name' => 'category',

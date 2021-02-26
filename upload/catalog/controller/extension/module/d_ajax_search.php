@@ -78,22 +78,22 @@ class ControllerExtensionModuleDAjaxSearch extends Controller {
     public function searchresults(){
 
         if(isset($this->request->get)){
-            $keyword=$this->request->get['keyword'];
+            $keyword = $this->request->get['keyword'];
         }else{
-            $keyword='';
+            $keyword = '';
         }
 
         $setting1 = $this->model_setting_setting->getSetting($this->id);
         $settings = $setting1['d_ajax_search_setting'];
 
-        $params=array();
+        $params = [];
         foreach ($settings['extension'] as $key => $value) {
             if($value['enabled'] == 1){
                 array_push($params, $key);
             }
         }
         if(!empty($params) && $setting1['d_ajax_search_status'] == 1){
-            $result=$this->model_extension_module_d_ajax_search->search($keyword,$params);
+            $result = $this->model_extension_module_d_ajax_search->search($keyword,$params);
             $this->response->setOutput(json_encode($result));
         }
 

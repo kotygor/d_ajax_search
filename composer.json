@@ -11,7 +11,7 @@
 			"xml": "install.xml"
 		},
 		"mappings": [
-			"admin/controller/extension/d_ajax_search/category_simple.php",
+			"admin/controller/extension/d_ajax_search/category.php",
 			"admin/controller/extension/d_ajax_search/product_simple.php",
 
 			"admin/controller/extension/module/d_ajax_search.php",
@@ -41,7 +41,7 @@
 			"catalog/view/theme/default/template/extension/module/d_ajax_search.twig",
 			"image/catalog/d_ajax_search/no_image_search.png",
 			"system/config/d_ajax_search/product_simple.php",
-			"system/config/d_ajax_search/category_simple.php",
+			"system/config/d_ajax_search/category.php",
 			"system/config/d_ajax_search.php",
 
 			"system/library/d_shopunity/extension/d_ajax_search.json",

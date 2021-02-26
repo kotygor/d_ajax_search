@@ -213,6 +213,8 @@ class ModelExtensionModuleDAjaxSearch extends Model {
                             }
                         }
                     }
+
+                    // jd todo where_find_in
                 }
             }
         }
