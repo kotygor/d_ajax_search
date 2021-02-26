@@ -27,7 +27,11 @@
 			"admin/view/template/extension/module/d_ajax_search.twig",
 
 			"catalog/controller/extension/module/d_ajax_search.php",
+
 			"catalog/language/en-gb/extension/module/d_ajax_search.php",
+			"catalog/language/ru-ru/extension/module/d_ajax_search.php",
+			"catalog/language/uk-ua/extension/module/d_ajax_search.php",
+
 			"catalog/model/extension/module/d_ajax_search.php",
 			"catalog/view/javascript/d_ajax_search/jquery.tinysort.min.js",
 			"catalog/view/theme/default/stylesheet/d_ajax_search/d_ajax_search.css",
