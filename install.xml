@@ -31,7 +31,11 @@
         <file path="catalog/view/theme/*/template/common/header.twig">
             <operation error="skip">
                 <search regex="true" limit="1"><![CDATA[($)]]></search>
-                <add><![CDATA[{{ d_ajax_search }}]]></add>
+                <add><![CDATA[
+    {# << kotygor_d_ajax_search.ocmod.xml #}
+    {{ d_ajax_search }}
+    {# >> kotygor_d_ajax_search.ocmod.xml #}
+                ]]></add>
             </operation>
         </file>
         <!-- 3.x compatibility END -->
