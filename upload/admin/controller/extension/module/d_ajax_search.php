@@ -125,9 +125,7 @@ class ControllerExtensionModuleDAjaxSearch extends Controller
         $data['route'] = $this->route;
         $data['version'] = $this->extension['version'];
 
-//        $data['pro'] = $this->d_ajax_search_pro;
-        $data['pro'] = true;
-
+        $data['pro'] = $this->d_ajax_search_pro;
         $data['d_shopunity'] = $this->d_shopunity;
         $data['store_id'] = $this->store_id;
 
