@@ -327,7 +327,7 @@
 			text_complite(a, b); {#  jd todo це нам потрібно? Наразі не працює #}
 			delay(function () {
 				doquick_search(a, b);
-			}, 500);
+			}, 1000);
 		});
 		$(document).on('focus', '{{ setting['class'] }}', function (ev) {
 			var a = ev;
@@ -335,7 +335,7 @@
 			text_complite(a, b); {# jd todo це нам потрібно? Наразі не працює #}
 			delay(function () {
 				doquick_search(a, b);
-			}, 500);
+			}, 1000);
 		});
 		if ({{ setting['block_result'] }}) {
 			var updown = 0;
