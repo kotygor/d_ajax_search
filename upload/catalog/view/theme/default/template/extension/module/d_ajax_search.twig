@@ -91,12 +91,12 @@
 			beforeSend: function () {
 				var html = '<div id="d_ajax_search_results"><div id="d_ajax_search_results_body">';
 				html += '<i class="fa fa-spinner fa-spin fa-3x fa-fw" style="margin-left: 50%;"></i>';
-				if ({{ mobile }}) {
+					{# if ({{ mobile }}) {
 					$('#search_mobile').after(html);
-				} else {
+					} else { #}
 					$("{{ setting['class'] }}").after(html);
 					// $('#d_ajax_search_results').css('margin-top', '-' + $("{{ setting['class'] }}").css('margin-bottom'));
-				}
+					{# } #}
 			},
 			success: function (results) {
                 // $('#search-autocomplite').text('');
