@@ -136,7 +136,7 @@ hr{
     padding: 0px 0px;
 }
 #d_ajax_search_results .row .col.va-center {
-    /* vertical-align: middle; */
+    vertical-align: middle;
 }
 #d_ajax_search_results .row .col .old-price {
     text-decoration:line-through;
